@@ -9,26 +9,46 @@ export class BooksController {
 
   @Post()
   create(@Body() createBookDto: CreateBookDto) {
-    return this.booksService.create(createBookDto);
+    try {
+      return this.booksService.create(createBookDto);
+    } catch (error) {
+      return error;      
+    }
   }
 
   @Get()
   findAll() {
-    return this.booksService.findAll();
+    try {
+      return this.booksService.findAll();
+    } catch (error) {
+      return error;
+    }
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.booksService.findOne(+id);
+  @Get(':isbn')
+  findOne(@Param('isbn') isbn: string) {
+    try {
+      return this.booksService.findOne(isbn);
+    } catch (error) {
+      return error;
+    }
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBookDto: UpdateBookDto) {
-    return this.booksService.update(+id, updateBookDto);
+  @Patch(':isbn')
+  update(@Param('isbn') isbn: string, @Body() updateBookDto: UpdateBookDto) {
+    try {
+      return this.booksService.update(isbn, updateBookDto);
+    } catch (error) {
+      return error;
+    }
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.booksService.remove(+id);
+  @Delete(':isbn')
+  remove(@Param('isbn') isbn: string) {
+    try {
+      return this.booksService.remove(isbn);
+    } catch (error) {
+      return error;      
+    }
   }
 }

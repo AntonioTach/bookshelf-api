@@ -19,12 +19,4 @@ export class UpdateBookDto extends PartialType(CreateBookDto) {
  @IsOptional()
  @IsString()
  description?: string;
-
- @IsOptional()
- @IsDateString()
- borrowDate?: Date;
-
- @IsOptional()
- @IsDateString()
- returnDate?: Date;
 }

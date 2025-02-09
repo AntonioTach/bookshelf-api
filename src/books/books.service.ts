@@ -19,7 +19,7 @@ export class BooksService {
         }
       });
     } catch (error) {
-      return error;
+      throw new Error(error.message);
     }
   }
 
@@ -28,7 +28,7 @@ export class BooksService {
     try {
       return await this.prismaService.book.findMany();
     } catch (error) {
-      return error;
+      throw new Error(error.message);
     }
   }
 
@@ -45,7 +45,7 @@ export class BooksService {
 
       return book;
     } catch (error) {
-      return error;
+      throw new Error(error.message);
     }
   }
 
@@ -57,7 +57,7 @@ export class BooksService {
         data: updateBookDto
       });
     } catch (error) {
-      return error;
+      throw new Error(error.message);
     }
   }
 
@@ -68,7 +68,7 @@ export class BooksService {
         where: { isbn }
       });
     } catch (error) {
-      return error;
+      throw new Error(error.message);
     }
   }
 }

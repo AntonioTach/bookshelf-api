@@ -14,12 +14,4 @@ export class CreateBookDto {
  @IsOptional()
  @IsString()
  description?: string;
-
- @IsOptional()
- @IsDate()
- borrowDate?: Date;
-
- @IsOptional()
- @IsDate()
- returnDate?: Date;
 }

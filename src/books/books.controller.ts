@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpStatus } from '@nestjs/common';
 import { BooksService } from './books.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
@@ -12,7 +12,10 @@ export class BooksController {
     try {
       return this.booksService.create(createBookDto);
     } catch (error) {
-      return error;      
+      throw new HttpException(
+        error.message || "Error creating book",
+        HttpStatus.INTERNAL_SERVER_ERROR
+      );   
     }
   }
 
@@ -21,7 +24,10 @@ export class BooksController {
     try {
       return this.booksService.findAll();
     } catch (error) {
-      return error;
+      throw new HttpException(
+        error.message || "Error getting books",
+        HttpStatus.INTERNAL_SERVER_ERROR
+      );
     }
   }
 
@@ -30,7 +36,10 @@ export class BooksController {
     try {
       return this.booksService.findOne(isbn);
     } catch (error) {
-      return error;
+      throw new HttpException(
+        error.message || "Error getting book",
+        HttpStatus.INTERNAL_SERVER_ERROR
+      );
     }
   }
 
@@ -39,7 +48,10 @@ export class BooksController {
     try {
       return this.booksService.update(isbn, updateBookDto);
     } catch (error) {
-      return error;
+      throw new HttpException(
+        error.message || "Error updating book",
+        HttpStatus.INTERNAL_SERVER_ERROR
+      );
     }
   }
 
@@ -48,7 +60,10 @@ export class BooksController {
     try {
       return this.booksService.remove(isbn);
     } catch (error) {
-      return error;      
+      throw new HttpException(
+        error.message || "Error deleting book",
+        HttpStatus.INTERNAL_SERVER_ERROR
+      );
     }
   }
 }
